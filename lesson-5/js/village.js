@@ -146,6 +146,16 @@ const createScene = async function() {
     // STEP 7: The car's wheels are stuck in the ground - we need to lift the car up so that it sits on the ground
     cart.position.y = 0.67;
 
+    // Lab B
+    const star = BABYLON.SceneLoader.ImportMeshAsync("", "./meshes/", "star.glb").then((result) => {
+        const starMesh = result.meshes[0];
+        starMesh.scaling = new BABYLON.Vector3(50, 50, 50);
+        starMesh.position = new BABYLON.Vector3(0, 0.35, -0.5);
+    }).catch((error) => {
+        console.error("Error loading mesh: " + error);
+        return null;
+    });
+
     // STEP 8: Create a new animation object
 
 
@@ -170,14 +180,14 @@ const createScene = async function() {
 
     // STEP 13: Enable the WebXR experience, and walk around your scene using the provided VR headset
     // Check to see if WebXR (immersive-vr, specifically) is supported on this device
-    if (BABYLON.WebXRSessionManager.IsSessionSupportedAsync("immersive-vr")) {
-        const xr = await scene.createDefaultXRExperienceAsync({
-            floorMeshes: [ground],
-            optionalFeatures: true
-        });
-    } else {
-        console.log("WebXR is not supported on this device.");
-    }
+//     if (BABYLON.WebXRSessionManager.IsSessionSupportedAsync("immersive-vr")) {
+//         const xr = await scene.createDefaultXRExperienceAsync({
+//             floorMeshes: [ground],
+//             optionalFeatures: true
+//         });
+//     } else {
+//         console.log("WebXR is not supported on this device.");
+//     }
 
     // Return the scene
     return scene;
