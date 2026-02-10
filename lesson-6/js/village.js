@@ -241,7 +241,7 @@ const createScene = async function() {
     /* ENABLE IMMERSIVE VR
     ---------------------------------------------------------------------------------------------------- */
     // STEP 12: Enable the WebXR experience, and walk around your scene using the provided VR headset
-    Check to see if WebXR (immersive-vr, specifically) is supported on this device
+    // Check to see if WebXR (immersive-vr, specifically) is supported on this device
     if (BABYLON.WebXRSessionManager.IsSessionSupportedAsync("immersive-vr")) {
         const xr = await scene.createDefaultXRExperienceAsync({
             floorMeshes: [largeGround],
