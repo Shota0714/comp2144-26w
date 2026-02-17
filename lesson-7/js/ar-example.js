@@ -60,7 +60,7 @@ const createScene = async function() {
     const xr = await scene.createDefaultXRExperienceAsync({
         uiOptions: {
             sessionMode: "immersive-ar",
-            // STEP 2b: We need 0, 0, 0 to be a space on the floor, not between your eyes! There are several types of reference spaces: viewer, local, local-floor, bounded-floor, and unbounded (https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpace)
+            // STEP 2b: We need 0, 0, 0 to be a space on the floor, not between your eyes! There are several types of reference spaces: viewer, local, local-floor, bounded-floor, and unbounded (https://develoxper.mozilla.org/en-US/docs/Web/API/XRReferenceSpace)
             referenceSpaceType: "local-floor"
         },
         // STEP 2c: Meta Quest requires these to be explicitly requested
@@ -78,7 +78,7 @@ const createScene = async function() {
     const hitTest = fm.enableFeature(BABYLON.WebXRHitTest, "latest");
 
     // STEP 6a: Create a marker to show where a hit-test has registered a surface
-     const marker = BABYLON.MeshBuilder.CreateCylinder("marker", { diameter: 0.15, height: 0.01 }, scene);
+    const marker = BABYLON.MeshBuilder.CreateCylinder("marker", { diameter: 0.15, height: 0.01 }, scene);
 
     // STEP 6b: Initialize the Quaternion so the hit-test can control rotation in all dimensions
     marker.rotationQuaternion = new BABYLON.Quaternion();
@@ -101,10 +101,10 @@ const createScene = async function() {
             lastHitTest = results[0];
             // STEP 7e: Extract what we need so that the marker is oriented properly on the detected surface
             lastHitTest.transformationMatrix.decompose(undefined, marker.rotationQuaternion, marker.position);
-        } else {
+        } else {    
             // STEP 7f: Otherwise, marker is invisible
             marker.isVisible = false;
-        };
+        }
     });
 
     /* ANCHORS
@@ -121,8 +121,8 @@ const createScene = async function() {
             const box = buildRandomBox();
             // STEP 8e: Attach the box to the real world!
             anchor.attachedNode = box;
-        };
-    };
+        }    
+    }    
     
     
     // Function to create a randomly-coloured box mesh
