@@ -122,9 +122,8 @@ const createScene = async function() {
             // STEP 8e: Attach the box to the real world!
             anchor.attachedNode = box;
         }    
-    }    
-    
-    
+    }   
+
     // Function to create a randomly-coloured box mesh
     function buildRandomBox() {
         const box = BABYLON.MeshBuilder.CreateBox("box", { size: 0.1 }, scene);
@@ -136,6 +135,30 @@ const createScene = async function() {
         boxMat.diffuseColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
         box.material = boxMat;
         return box;
+    }
+
+    // lab c
+    // generate a random object when the user clicks on the hit-test marker
+    scene.onPointerDown = async () => {
+        if (lastHitTest && marker.isVisible) {
+            const anchor = await anchorSystem.addAnchorPointUsingHitTestResultAsync(lastHitTest);
+            const sphere = buildRandomSphere();
+            anchor.attachedNode = sphere;
+        }
+    }
+
+    // function to create a randomly-sized sphere mesh
+    function buildRandomSphere() {
+        const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {}, scene);
+        const sphereMat = new BABYLON.StandardMaterial("sphereMat", scene);
+        sphere.position.y = 0.05;
+        sphere.bakeCurrentTransformIntoVertices();
+        sphereMat.diffuseColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
+        sphere.material = sphereMat;
+        const randomSize = Math.random() * 0.2 + 0.05;
+        sphere.scaling = new BABYLON.Vector3(randomSize, randomSize, randomSize);
+        sphere.material = sphereMat;
+        return sphere;
     }
 
     // Return the scene
