@@ -121,7 +121,7 @@ const createScene = async function() {
     // STEP 6d: Build a simple function to change the material.diffuseColor of the box to a random color
     function changeBoxColor() {
         box.material.diffuseColor = new BABYLON.Color3.Random();
-    }
+    };
 
     // STEP 8: Make the can grabbable and moveable (awesome)! 
     
